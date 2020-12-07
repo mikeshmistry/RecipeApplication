@@ -12,11 +12,19 @@ namespace RecipeApplication.UI
 {
     public partial class RecipeApplication : Form
     {
+
+        private ErrorProvider ErrorProvider { get; set; }
+        
         public RecipeApplication()
         {
             InitializeComponent();
+            ErrorProvider = new ErrorProvider();
+            
         }
 
-      
+        private void tabAddRecipeControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
