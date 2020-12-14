@@ -20,11 +20,9 @@ namespace RecipeApplication.UI
             InitializeComponent();
             ErrorProvider = new ErrorProvider();
             
+        
         }
 
-        private void tabAddRecipeControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }
