@@ -45,10 +45,10 @@ namespace RecipeApplication.UI
             this.tableLayoutRecipe = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddToRecipe = new System.Windows.Forms.Button();
             this.tableAddToRecipeLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.cbIngredients = new System.Windows.Forms.ComboBox();
             this.lblRecipe = new System.Windows.Forms.Label();
             this.lblAddIngredientToRecipe = new System.Windows.Forms.Label();
             this.cbAddToRecipe = new System.Windows.Forms.ComboBox();
+            this.cbIngredients = new System.Windows.Forms.ComboBox();
             this.tableAddIngridentButtonLayout = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddIngridient = new System.Windows.Forms.Button();
             this.tableIngredientLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -131,12 +131,13 @@ namespace RecipeApplication.UI
             this.btnDeleteRecipe.TabIndex = 2;
             this.btnDeleteRecipe.Text = "Delete Recipe";
             this.btnDeleteRecipe.UseVisualStyleBackColor = true;
+            this.btnDeleteRecipe.Click += new System.EventHandler(this.btnDeleteRecipe_Click);
             // 
             // tableDeleteRecipeLayout
             // 
             this.tableDeleteRecipeLayout.ColumnCount = 2;
-            this.tableDeleteRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.43979F));
-            this.tableDeleteRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.56021F));
+            this.tableDeleteRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.70833F));
+            this.tableDeleteRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.29166F));
             this.tableDeleteRecipeLayout.Controls.Add(this.lblDeleteRecipe, 0, 0);
             this.tableDeleteRecipeLayout.Controls.Add(this.cbRecipes, 1, 0);
             this.tableDeleteRecipeLayout.Location = new System.Drawing.Point(3, 82);
@@ -145,25 +146,26 @@ namespace RecipeApplication.UI
             this.tableDeleteRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableDeleteRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableDeleteRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableDeleteRecipeLayout.Size = new System.Drawing.Size(379, 30);
+            this.tableDeleteRecipeLayout.Size = new System.Drawing.Size(480, 30);
             this.tableDeleteRecipeLayout.TabIndex = 5;
             // 
             // lblDeleteRecipe
             // 
-            this.lblDeleteRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDeleteRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDeleteRecipe.AutoSize = true;
             this.lblDeleteRecipe.Location = new System.Drawing.Point(3, 7);
             this.lblDeleteRecipe.Name = "lblDeleteRecipe";
-            this.lblDeleteRecipe.Size = new System.Drawing.Size(94, 15);
+            this.lblDeleteRecipe.Size = new System.Drawing.Size(53, 15);
             this.lblDeleteRecipe.TabIndex = 0;
             this.lblDeleteRecipe.Text = "Recipes :";
             // 
             // cbRecipes
             // 
+            this.cbRecipes.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbRecipes.FormattingEnabled = true;
-            this.cbRecipes.Location = new System.Drawing.Point(103, 3);
+            this.cbRecipes.Location = new System.Drawing.Point(87, 3);
             this.cbRecipes.Name = "cbRecipes";
-            this.cbRecipes.Size = new System.Drawing.Size(273, 23);
+            this.cbRecipes.Size = new System.Drawing.Size(283, 23);
             this.cbRecipes.TabIndex = 1;
             // 
             // tableAddRecipeButtonLayout
@@ -189,12 +191,13 @@ namespace RecipeApplication.UI
             this.btnAddRecipe.TabIndex = 2;
             this.btnAddRecipe.Text = "Add Recipe";
             this.btnAddRecipe.UseVisualStyleBackColor = true;
+            this.btnAddRecipe.Click += new System.EventHandler(this.btnAddRecipe_Click);
             // 
             // tableAddRecipeLayout
             // 
             this.tableAddRecipeLayout.ColumnCount = 2;
-            this.tableAddRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.43979F));
-            this.tableAddRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.56021F));
+            this.tableAddRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
+            this.tableAddRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.95238F));
             this.tableAddRecipeLayout.Controls.Add(this.lblRecipeName, 0, 0);
             this.tableAddRecipeLayout.Controls.Add(this.txtAddRecipe, 1, 0);
             this.tableAddRecipeLayout.Location = new System.Drawing.Point(0, 3);
@@ -202,29 +205,30 @@ namespace RecipeApplication.UI
             this.tableAddRecipeLayout.RowCount = 1;
             this.tableAddRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableAddRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableAddRecipeLayout.Size = new System.Drawing.Size(382, 35);
+            this.tableAddRecipeLayout.Size = new System.Drawing.Size(483, 35);
             this.tableAddRecipeLayout.TabIndex = 3;
             // 
             // lblRecipeName
             // 
-            this.lblRecipeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecipeName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRecipeName.AutoSize = true;
-            this.lblRecipeName.Location = new System.Drawing.Point(3, 10);
+            this.lblRecipeName.Location = new System.Drawing.Point(6, 10);
             this.lblRecipeName.Name = "lblRecipeName";
-            this.lblRecipeName.Size = new System.Drawing.Size(95, 15);
+            this.lblRecipeName.Size = new System.Drawing.Size(83, 15);
             this.lblRecipeName.TabIndex = 0;
             this.lblRecipeName.Text = "Recipe Name :";
             // 
             // txtAddRecipe
             // 
-            this.txtAddRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddRecipe.Location = new System.Drawing.Point(104, 6);
+            this.txtAddRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtAddRecipe.Location = new System.Drawing.Point(95, 6);
             this.txtAddRecipe.Name = "txtAddRecipe";
-            this.txtAddRecipe.Size = new System.Drawing.Size(275, 23);
+            this.txtAddRecipe.Size = new System.Drawing.Size(283, 23);
             this.txtAddRecipe.TabIndex = 1;
             // 
             // tabAddRecipeControl
             // 
+            this.tabAddRecipeControl.CausesValidation = false;
             this.tabAddRecipeControl.Controls.Add(this.tabAddRecipe);
             this.tabAddRecipeControl.Controls.Add(this.tabAddIngridient);
             this.tabAddRecipeControl.Controls.Add(this.tabAddCookingInstruction);
@@ -273,62 +277,63 @@ namespace RecipeApplication.UI
             this.btnAddToRecipe.TabIndex = 2;
             this.btnAddToRecipe.Text = "Add To Recipe";
             this.btnAddToRecipe.UseVisualStyleBackColor = true;
+            this.btnAddToRecipe.Click += new System.EventHandler(this.btnAddToRecipe_Click);
             // 
             // tableAddToRecipeLayout
             // 
             this.tableAddToRecipeLayout.ColumnCount = 2;
-            this.tableAddToRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.41361F));
-            this.tableAddToRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.58639F));
-            this.tableAddToRecipeLayout.Controls.Add(this.cbIngredients, 1, 0);
+            this.tableAddToRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.05176F));
+            this.tableAddToRecipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.94824F));
             this.tableAddToRecipeLayout.Controls.Add(this.lblRecipe, 0, 1);
             this.tableAddToRecipeLayout.Controls.Add(this.lblAddIngredientToRecipe, 0, 0);
             this.tableAddToRecipeLayout.Controls.Add(this.cbAddToRecipe, 1, 1);
+            this.tableAddToRecipeLayout.Controls.Add(this.cbIngredients, 1, 0);
             this.tableAddToRecipeLayout.Location = new System.Drawing.Point(3, 82);
             this.tableAddToRecipeLayout.Name = "tableAddToRecipeLayout";
             this.tableAddToRecipeLayout.RowCount = 2;
             this.tableAddToRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableAddToRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableAddToRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableAddToRecipeLayout.Size = new System.Drawing.Size(382, 57);
+            this.tableAddToRecipeLayout.Size = new System.Drawing.Size(483, 57);
             this.tableAddToRecipeLayout.TabIndex = 6;
-            // 
-            // cbIngredients
-            // 
-            this.cbIngredients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbIngredients.FormattingEnabled = true;
-            this.cbIngredients.Location = new System.Drawing.Point(122, 3);
-            this.cbIngredients.Name = "cbIngredients";
-            this.cbIngredients.Size = new System.Drawing.Size(257, 23);
-            this.cbIngredients.TabIndex = 8;
             // 
             // lblRecipe
             // 
-            this.lblRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRecipe.AutoSize = true;
             this.lblRecipe.Location = new System.Drawing.Point(3, 35);
             this.lblRecipe.Name = "lblRecipe";
-            this.lblRecipe.Size = new System.Drawing.Size(113, 15);
+            this.lblRecipe.Size = new System.Drawing.Size(53, 15);
             this.lblRecipe.TabIndex = 2;
             this.lblRecipe.Text = "Recipes :";
             // 
             // lblAddIngredientToRecipe
             // 
-            this.lblAddIngredientToRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAddIngredientToRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAddIngredientToRecipe.AutoSize = true;
             this.lblAddIngredientToRecipe.Location = new System.Drawing.Point(3, 6);
             this.lblAddIngredientToRecipe.Name = "lblAddIngredientToRecipe";
-            this.lblAddIngredientToRecipe.Size = new System.Drawing.Size(113, 15);
+            this.lblAddIngredientToRecipe.Size = new System.Drawing.Size(72, 15);
             this.lblAddIngredientToRecipe.TabIndex = 0;
             this.lblAddIngredientToRecipe.Text = "Ingredients :";
             // 
             // cbAddToRecipe
             // 
-            this.cbAddToRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAddToRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbAddToRecipe.FormattingEnabled = true;
-            this.cbAddToRecipe.Location = new System.Drawing.Point(122, 31);
+            this.cbAddToRecipe.Location = new System.Drawing.Point(124, 31);
             this.cbAddToRecipe.Name = "cbAddToRecipe";
-            this.cbAddToRecipe.Size = new System.Drawing.Size(257, 23);
+            this.cbAddToRecipe.Size = new System.Drawing.Size(283, 23);
             this.cbAddToRecipe.TabIndex = 1;
+            // 
+            // cbIngredients
+            // 
+            this.cbIngredients.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbIngredients.FormattingEnabled = true;
+            this.cbIngredients.Location = new System.Drawing.Point(124, 3);
+            this.cbIngredients.Name = "cbIngredients";
+            this.cbIngredients.Size = new System.Drawing.Size(283, 23);
+            this.cbIngredients.TabIndex = 8;
             // 
             // tableAddIngridentButtonLayout
             // 
@@ -353,12 +358,13 @@ namespace RecipeApplication.UI
             this.btnAddIngridient.TabIndex = 2;
             this.btnAddIngridient.Text = "Add Ingredient";
             this.btnAddIngridient.UseVisualStyleBackColor = true;
+            this.btnAddIngridient.Click += new System.EventHandler(this.btnAddIngridient_Click);
             // 
             // tableIngredientLayout
             // 
             this.tableIngredientLayout.ColumnCount = 2;
-            this.tableIngredientLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.41361F));
-            this.tableIngredientLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.58639F));
+            this.tableIngredientLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.87992F));
+            this.tableIngredientLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.12008F));
             this.tableIngredientLayout.Controls.Add(this.lblIngridentName, 0, 0);
             this.tableIngredientLayout.Controls.Add(this.txtIngridentName, 1, 0);
             this.tableIngredientLayout.Location = new System.Drawing.Point(3, 3);
@@ -366,25 +372,25 @@ namespace RecipeApplication.UI
             this.tableIngredientLayout.RowCount = 1;
             this.tableIngredientLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableIngredientLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableIngredientLayout.Size = new System.Drawing.Size(382, 35);
+            this.tableIngredientLayout.Size = new System.Drawing.Size(483, 35);
             this.tableIngredientLayout.TabIndex = 4;
             // 
             // lblIngridentName
             // 
-            this.lblIngridentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblIngridentName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblIngridentName.AutoSize = true;
             this.lblIngridentName.Location = new System.Drawing.Point(3, 10);
             this.lblIngridentName.Name = "lblIngridentName";
-            this.lblIngridentName.Size = new System.Drawing.Size(113, 15);
+            this.lblIngridentName.Size = new System.Drawing.Size(102, 15);
             this.lblIngridentName.TabIndex = 0;
             this.lblIngridentName.Text = "Ingredient Name :";
             // 
             // txtIngridentName
             // 
-            this.txtIngridentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIngridentName.Location = new System.Drawing.Point(122, 6);
+            this.txtIngridentName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtIngridentName.Location = new System.Drawing.Point(128, 6);
             this.txtIngridentName.Name = "txtIngridentName";
-            this.txtIngridentName.Size = new System.Drawing.Size(257, 23);
+            this.txtIngridentName.Size = new System.Drawing.Size(283, 23);
             this.txtIngridentName.TabIndex = 1;
             // 
             // tabAddCookingInstruction
@@ -407,7 +413,7 @@ namespace RecipeApplication.UI
             this.tableLayoutAddToRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddToRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddToRecipe.Controls.Add(this.btnAddCookingInstructionToRecipe, 0, 0);
-            this.tableLayoutAddToRecipe.Location = new System.Drawing.Point(283, 240);
+            this.tableLayoutAddToRecipe.Location = new System.Drawing.Point(283, 271);
             this.tableLayoutAddToRecipe.Name = "tableLayoutAddToRecipe";
             this.tableLayoutAddToRecipe.RowCount = 1;
             this.tableLayoutAddToRecipe.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -424,12 +430,13 @@ namespace RecipeApplication.UI
             this.btnAddCookingInstructionToRecipe.TabIndex = 2;
             this.btnAddCookingInstructionToRecipe.Text = "Add To Recipe";
             this.btnAddCookingInstructionToRecipe.UseVisualStyleBackColor = true;
+            this.btnAddCookingInstructionToRecipe.Click += new System.EventHandler(this.btnAddCookingInstructionToRecipe_Click);
             // 
             // tableLayoutAddCooking
             // 
             this.tableLayoutAddCooking.ColumnCount = 2;
-            this.tableLayoutAddCooking.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.60209F));
-            this.tableLayoutAddCooking.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.3979F));
+            this.tableLayoutAddCooking.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.5F));
+            this.tableLayoutAddCooking.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.5F));
             this.tableLayoutAddCooking.Controls.Add(this.cbCookingInstruction, 1, 0);
             this.tableLayoutAddCooking.Controls.Add(this.lblRecipeToAddToInstruction, 0, 1);
             this.tableLayoutAddCooking.Controls.Add(this.cbCookingInstructionRecipe, 1, 1);
@@ -440,44 +447,44 @@ namespace RecipeApplication.UI
             this.tableLayoutAddCooking.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddCooking.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddCooking.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutAddCooking.Size = new System.Drawing.Size(382, 57);
+            this.tableLayoutAddCooking.Size = new System.Drawing.Size(480, 79);
             this.tableLayoutAddCooking.TabIndex = 7;
             // 
             // cbCookingInstruction
             // 
-            this.cbCookingInstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCookingInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbCookingInstruction.FormattingEnabled = true;
-            this.cbCookingInstruction.Location = new System.Drawing.Point(138, 3);
+            this.cbCookingInstruction.Location = new System.Drawing.Point(135, 8);
             this.cbCookingInstruction.Name = "cbCookingInstruction";
-            this.cbCookingInstruction.Size = new System.Drawing.Size(241, 23);
+            this.cbCookingInstruction.Size = new System.Drawing.Size(308, 23);
             this.cbCookingInstruction.TabIndex = 8;
             // 
             // lblRecipeToAddToInstruction
             // 
-            this.lblRecipeToAddToInstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecipeToAddToInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRecipeToAddToInstruction.AutoSize = true;
-            this.lblRecipeToAddToInstruction.Location = new System.Drawing.Point(3, 35);
+            this.lblRecipeToAddToInstruction.Location = new System.Drawing.Point(3, 51);
             this.lblRecipeToAddToInstruction.Name = "lblRecipeToAddToInstruction";
-            this.lblRecipeToAddToInstruction.Size = new System.Drawing.Size(129, 15);
+            this.lblRecipeToAddToInstruction.Size = new System.Drawing.Size(53, 15);
             this.lblRecipeToAddToInstruction.TabIndex = 2;
             this.lblRecipeToAddToInstruction.Text = "Recipes :";
             // 
             // cbCookingInstructionRecipe
             // 
-            this.cbCookingInstructionRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCookingInstructionRecipe.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbCookingInstructionRecipe.FormattingEnabled = true;
-            this.cbCookingInstructionRecipe.Location = new System.Drawing.Point(138, 31);
+            this.cbCookingInstructionRecipe.Location = new System.Drawing.Point(135, 47);
             this.cbCookingInstructionRecipe.Name = "cbCookingInstructionRecipe";
-            this.cbCookingInstructionRecipe.Size = new System.Drawing.Size(241, 23);
+            this.cbCookingInstructionRecipe.Size = new System.Drawing.Size(308, 23);
             this.cbCookingInstructionRecipe.TabIndex = 1;
             // 
             // lblCookingInstruction
             // 
-            this.lblCookingInstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCookingInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCookingInstruction.AutoSize = true;
-            this.lblCookingInstruction.Location = new System.Drawing.Point(3, 6);
+            this.lblCookingInstruction.Location = new System.Drawing.Point(3, 12);
             this.lblCookingInstruction.Name = "lblCookingInstruction";
-            this.lblCookingInstruction.Size = new System.Drawing.Size(129, 15);
+            this.lblCookingInstruction.Size = new System.Drawing.Size(115, 15);
             this.lblCookingInstruction.TabIndex = 0;
             this.lblCookingInstruction.Text = "Cooking Instruction:";
             // 
@@ -504,12 +511,13 @@ namespace RecipeApplication.UI
             this.btnAddInstruction.TabIndex = 2;
             this.btnAddInstruction.Text = "Add Instruction";
             this.btnAddInstruction.UseVisualStyleBackColor = true;
+            this.btnAddInstruction.Click += new System.EventHandler(this.btnAddInstruction_Click);
             // 
             // tableCookingInstructionsLayout
             // 
             this.tableCookingInstructionsLayout.ColumnCount = 2;
-            this.tableCookingInstructionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.69072F));
-            this.tableCookingInstructionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.30928F));
+            this.tableCookingInstructionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.36439F));
+            this.tableCookingInstructionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.63561F));
             this.tableCookingInstructionsLayout.Controls.Add(this.lblInstructionName, 0, 0);
             this.tableCookingInstructionsLayout.Controls.Add(this.txtInstructionName, 1, 0);
             this.tableCookingInstructionsLayout.Controls.Add(this.lblCookingInstructions, 0, 2);
@@ -520,41 +528,41 @@ namespace RecipeApplication.UI
             this.tableCookingInstructionsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.29269F));
             this.tableCookingInstructionsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.70732F));
             this.tableCookingInstructionsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableCookingInstructionsLayout.Size = new System.Drawing.Size(388, 130);
+            this.tableCookingInstructionsLayout.Size = new System.Drawing.Size(483, 130);
             this.tableCookingInstructionsLayout.TabIndex = 4;
             // 
             // lblInstructionName
             // 
-            this.lblInstructionName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInstructionName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblInstructionName.AutoSize = true;
             this.lblInstructionName.Location = new System.Drawing.Point(3, 6);
             this.lblInstructionName.Name = "lblInstructionName";
-            this.lblInstructionName.Size = new System.Drawing.Size(147, 15);
+            this.lblInstructionName.Size = new System.Drawing.Size(105, 15);
             this.lblInstructionName.TabIndex = 0;
             this.lblInstructionName.Text = "Instruction Name :";
             // 
             // txtInstructionName
             // 
-            this.txtInstructionName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInstructionName.Location = new System.Drawing.Point(156, 3);
+            this.txtInstructionName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtInstructionName.Location = new System.Drawing.Point(140, 3);
             this.txtInstructionName.Name = "txtInstructionName";
-            this.txtInstructionName.Size = new System.Drawing.Size(229, 23);
+            this.txtInstructionName.Size = new System.Drawing.Size(283, 23);
             this.txtInstructionName.TabIndex = 1;
             // 
             // lblCookingInstructions
             // 
-            this.lblCookingInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCookingInstructions.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCookingInstructions.AutoSize = true;
             this.lblCookingInstructions.Location = new System.Drawing.Point(3, 78);
             this.lblCookingInstructions.Name = "lblCookingInstructions";
-            this.lblCookingInstructions.Size = new System.Drawing.Size(147, 15);
+            this.lblCookingInstructions.Size = new System.Drawing.Size(123, 15);
             this.lblCookingInstructions.TabIndex = 2;
             this.lblCookingInstructions.Text = "Cooking Instructions :";
             // 
             // txtCookingInstruction
             // 
-            this.txtCookingInstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCookingInstruction.Location = new System.Drawing.Point(156, 44);
+            this.txtCookingInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtCookingInstruction.Location = new System.Drawing.Point(140, 44);
             this.txtCookingInstruction.Multiline = true;
             this.txtCookingInstruction.Name = "txtCookingInstruction";
             this.txtCookingInstruction.Size = new System.Drawing.Size(229, 83);
@@ -619,12 +627,14 @@ namespace RecipeApplication.UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(784, 411);
             this.Controls.Add(this.tabAddRecipeControl);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RecipeApplication";
             this.Text = "Recipe Application ";
+            this.Load += new System.EventHandler(this.RecipeApplication_Load);
             this.tabAddRecipe.ResumeLayout(false);
             this.tableDeleteRecipeButtonLayout.ResumeLayout(false);
             this.tableDeleteRecipeLayout.ResumeLayout(false);
