@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecipeApplication.BL\RecipeApplication.BL.csproj" />
+  </ItemGroup>
+
 </Project>

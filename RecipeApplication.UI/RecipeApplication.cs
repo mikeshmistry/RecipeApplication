@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RecipeApplication.BL;
 
 namespace RecipeApplication.UI
 {
@@ -31,6 +32,11 @@ namespace RecipeApplication.UI
         /// </summary>
         private InstructionValidator InstructionValidator { get; set; }
 
+        /// <summary>
+        /// Property to the Recipe Business Layer Object
+        /// </summary>
+        private Recipe Recipe { get; set; }
+
 
         #endregion
 
@@ -51,6 +57,19 @@ namespace RecipeApplication.UI
             RecipeValidator = new RecipeValidator();
             IngredientValidator = new IngredientValidator();
             InstructionValidator = new InstructionValidator();
+            Recipe = new Recipe();
+
+            //get all the recipes 
+            var recipeList = Recipe.GetAllRecipes();
+
+            if(recipeList != null)
+            {
+                cbRecipes.DataSource = recipeList;
+                cbRecipes.DisplayMember = "Name";
+
+           
+            }
+
 
         }
 
@@ -65,7 +84,15 @@ namespace RecipeApplication.UI
 
             if (isValid)
             {
-                MessageBox.Show("Recipe Added successfully");
+                var recipeToAdd = new Recipe() { Name = txtAddRecipe.Text };
+                var added = Recipe.AddRecipe(recipeToAdd);
+
+                if (added)
+                    MessageBox.Show("Recipe added");
+
+                else
+                    MessageBox.Show("Recipe Not Added");
+
             }
         }
 

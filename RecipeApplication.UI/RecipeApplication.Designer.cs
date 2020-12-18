@@ -163,6 +163,8 @@ namespace RecipeApplication.UI
             // 
             this.cbRecipes.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbRecipes.FormattingEnabled = true;
+            this.cbRecipes.Items.AddRange(new object[] {
+            ""});
             this.cbRecipes.Location = new System.Drawing.Point(87, 3);
             this.cbRecipes.Name = "cbRecipes";
             this.cbRecipes.Size = new System.Drawing.Size(283, 23);
