@@ -39,14 +39,10 @@ namespace RecipeApplication.UI.UIClasses
         {
 
             var isValid =  ValidationObject.ValidateRecipeName(name);
-
-
-            var added = false;
-
             if (isValid)
             {
                 var recipeToAdd = new RecipeDTO() { Name = name.Text };
-                added = await BusinessObject.AddRecipeAsync(recipeToAdd);
+                var added = await BusinessObject.AddRecipeAsync(recipeToAdd);
 
 
                 if (added)
@@ -79,6 +75,7 @@ namespace RecipeApplication.UI.UIClasses
            var count = recipesList.Count;
             if (count != 0)
             {
+                
                 if(recipesList[0].Name !="Select A Recipe")
                 recipesList.Insert(0, new RecipeDTO() { RecipeId = 0, Name = "Select A Recipe" });
 
@@ -87,10 +84,12 @@ namespace RecipeApplication.UI.UIClasses
                 recipes.ValueMember = "RecipeId";
                 recipes.DisplayMember = "Name";
 
+                
+
                 if (buttonRecipe !=null)
                 buttonRecipe.Enabled = true;
-                
-                
+
+                recipes.SelectedIndex = 0;
             }
             else
             {
@@ -113,8 +112,8 @@ namespace RecipeApplication.UI.UIClasses
         /// <returns>A List of all the Recipes</returns>
         public async Task<List<RecipeDTO>> GetAllRecipesAsync()
         {
-            List<RecipeDTO> allRecipes = new List<RecipeDTO>();
-            allRecipes = await BusinessObject.GetAllRecipesAsync();
+            
+           var allRecipes = await BusinessObject.GetAllRecipesAsync();
 
             return allRecipes;
         }
@@ -139,6 +138,17 @@ namespace RecipeApplication.UI.UIClasses
                 else
                     ShowMessage($"Recipe {recipeToDelete.Name} Not Deleted");
             }
+        }
+
+        /// <summary>
+        /// Method to get a recipe with ingredients and cooking instructions
+        /// </summary>
+        /// <param name="recipe">The recipe to get the ingredients and cooking instructions for</param>
+        /// <returns>A recipe</returns>
+        public async Task<RecipeDTO> GetRecipeWithIngredientsAndInstructions(RecipeDTO recipe)
+        {
+            var foundRecipe = await BusinessObject.GetRecipeWithIngredientsAndInstructionsAsync(recipe);
+            return foundRecipe;
         }
        
 

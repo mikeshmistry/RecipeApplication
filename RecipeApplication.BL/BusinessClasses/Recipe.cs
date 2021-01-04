@@ -25,7 +25,7 @@ namespace RecipeApplication.BL
 
         #endregion
 
-      
+
 
         #region Constructors
 
@@ -109,7 +109,7 @@ namespace RecipeApplication.BL
             var isDeleted = true;
             try
             {
-            await Task.Run(() => recipeRepository.DeleteRecipe(recipe.RecipeId));
+                await Task.Run(() => recipeRepository.DeleteRecipe(recipe.RecipeId));
             }
             catch (Exception ex)
             {
@@ -119,9 +119,84 @@ namespace RecipeApplication.BL
             return isDeleted;
         }
 
+        /// <summary>
+        /// Method to get a recipe will all ingredients and cooking instructions
+        /// </summary>
+        /// <param name="recipe">The recipe to get the ingredients and cooking instructions for</param>
+        /// <returns>A recipe object</returns>
+        public async Task<RecipeDTO> GetRecipeWithIngredientsAndInstructionsAsync(RecipeDTO recipe)
+        {
+            RecipeDTO recipeToReturn = null;
+            try
+            {
+                var foundRecipe = await Task.Run(() =>
+                                               recipeRepository.GetRecipeWithIngredientsAndInstructions(recipe.RecipeId));
+
+                if (foundRecipe != null)
+                {
+                    recipeToReturn = new RecipeDTO()
+                    {
+                        RecipeId = foundRecipe.RecipeId,
+                        Name = foundRecipe.Name
+                    };
+
+                    //get the ingredients
+                    if (foundRecipe.Ingredients != null)
+                        recipeToReturn.Ingredients = await Task.Run(() => ConvertIngredients(foundRecipe.Ingredients));
+
+                    //get the cooking instructions
+                    if (foundRecipe.CookingInstructions != null)
+                        recipeToReturn.Instructions = await Task.Run(() => ConvertInstructions(foundRecipe.CookingInstructions));
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return recipeToReturn;
+        }
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Method to convert a collections of ingredients to a list of ingredientsDTO   
+        /// </summary>
+        /// <param name="ingredients">The collection to of ingredients to covert</param>
+        /// <returns>A list of ingredientDTO objects</returns>
+        private List<IngredientDTO> ConvertIngredients(ICollection<Entities.Ingredient> ingredients)
+        {
+            var ingredientList = (from ingredient in ingredients
+                                  select new IngredientDTO
+                                  {
+                                      IngredientId = ingredient.IngredientId,
+                                      Name = ingredient.Name
+                                  }).ToList<IngredientDTO>();
+
+            return ingredientList;
+        }
+
+
+        /// <summary>
+        /// Method to convert a collections of instructions to a list of instructionsDTO   
+        /// </summary>
+        /// <param name="instruction">The collection to of cooking instructions to covert</param>
+        /// <returns>A list of CookingInstructionsDTO objects</returns>
+        private List<CookingInstructionDTO> ConvertInstructions(ICollection<Entities.CookingInstruction> instructions)
+        {
+            var instructionList = (from instruction in instructions
+                                   select new CookingInstructionDTO
+                                   {
+                                       CookingInstructionId = instruction.CookingInstructionId,
+                                       Name = instruction.Name,
+                                       Instruction = instruction.Instruction
+
+                                   }).ToList<CookingInstructionDTO>();
+
+            return instructionList;
+        }
 
         /// <summary>
         /// Method to convert a recipe to an entity class so it can be added to the database
@@ -131,9 +206,11 @@ namespace RecipeApplication.BL
         private Entities.Recipe CreateRecipeEntity(RecipeDTO recipe)
         {
 
-            var recipeEntity = new Entities.Recipe();
-            recipeEntity.Name = recipe.Name;
-   
+            var recipeEntity = new Entities.Recipe
+            {
+                Name = recipe.Name
+            };
+
             return recipeEntity;
 
         }

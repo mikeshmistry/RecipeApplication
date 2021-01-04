@@ -153,8 +153,10 @@ namespace RecipeApplication.BL
         private Entities.Ingredient CreateIngredientEntity(IngredientDTO ingredient)
         {
 
-            var ingredientEntity = new Entities.Ingredient();
-            ingredientEntity.Name = ingredient.Name;
+            var ingredientEntity = new Entities.Ingredient
+            {
+                Name = ingredient.Name
+            };
 
             return ingredientEntity;
 

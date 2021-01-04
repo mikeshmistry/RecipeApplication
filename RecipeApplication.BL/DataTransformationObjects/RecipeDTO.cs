@@ -23,7 +23,15 @@ namespace RecipeApplication.BL.DataTransformationObjects
         /// </summary>
         public String Name { get; set; }
 
+        /// <summary>
+        /// Property for the Ingredients
+        /// </summary>
+        public List<IngredientDTO> Ingredients { get; set; }
 
+        /// <summary>
+        /// Property for the Cooking Instructions
+        /// </summary>
+        public List<CookingInstructionDTO> Instructions { get; set; }
         #endregion
 
         #region Constructor

@@ -80,6 +80,12 @@ namespace RecipeApplication.UI
             this.lblCookingInstructions = new System.Windows.Forms.Label();
             this.txtCookingInstruction = new System.Windows.Forms.TextBox();
             this.tabViewRecipe = new System.Windows.Forms.TabPage();
+            this.pnlViewRecipe = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblIIngredients = new System.Windows.Forms.Label();
+            this.lblCInstructions = new System.Windows.Forms.Label();
+            this.gvCookingInstructions = new System.Windows.Forms.DataGridView();
+            this.gvIngredients = new System.Windows.Forms.DataGridView();
             this.tableViewRecipeLayout = new System.Windows.Forms.TableLayoutPanel();
             this.lblViewRecipe = new System.Windows.Forms.Label();
             this.cbViewRecipe = new System.Windows.Forms.ComboBox();
@@ -105,6 +111,10 @@ namespace RecipeApplication.UI
             this.tableButtonAddInstructionLayout.SuspendLayout();
             this.tableCookingInstructionsLayout.SuspendLayout();
             this.tabViewRecipe.SuspendLayout();
+            this.pnlViewRecipe.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCookingInstructions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvIngredients)).BeginInit();
             this.tableViewRecipeLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -295,7 +305,7 @@ namespace RecipeApplication.UI
             this.btnDeleteIngredient.TabIndex = 2;
             this.btnDeleteIngredient.Text = "Delete Ingredient";
             this.btnDeleteIngredient.UseVisualStyleBackColor = true;
-            this.btnDeleteIngredient.Click += new System.EventHandler(this.btnDeleteIngredientAsync_Click);
+            this.btnDeleteIngredient.Click += new System.EventHandler(this.BtnDeleteIngredientAsync_Click);
             // 
             // tbDeleteIngredient
             // 
@@ -509,7 +519,7 @@ namespace RecipeApplication.UI
             this.btnDeleteInstruction.TabIndex = 2;
             this.btnDeleteInstruction.Text = "Delete Instruction";
             this.btnDeleteInstruction.UseVisualStyleBackColor = true;
-            this.btnDeleteInstruction.Click += new System.EventHandler(this.btnDeleteInstructionAsync_Click);
+            this.btnDeleteInstruction.Click += new System.EventHandler(this.BtnDeleteInstructionAsync_Click);
             // 
             // tblDeleteInstructions
             // 
@@ -708,6 +718,7 @@ namespace RecipeApplication.UI
             // 
             // tabViewRecipe
             // 
+            this.tabViewRecipe.Controls.Add(this.pnlViewRecipe);
             this.tabViewRecipe.Controls.Add(this.tableViewRecipeLayout);
             this.tabViewRecipe.Location = new System.Drawing.Point(4, 24);
             this.tabViewRecipe.Name = "tabViewRecipe";
@@ -716,6 +727,82 @@ namespace RecipeApplication.UI
             this.tabViewRecipe.TabIndex = 4;
             this.tabViewRecipe.Text = "View Recipe";
             this.tabViewRecipe.UseVisualStyleBackColor = true;
+            // 
+            // pnlViewRecipe
+            // 
+            this.pnlViewRecipe.Controls.Add(this.tableLayoutPanel1);
+            this.pnlViewRecipe.Location = new System.Drawing.Point(3, 39);
+            this.pnlViewRecipe.Name = "pnlViewRecipe";
+            this.pnlViewRecipe.Size = new System.Drawing.Size(784, 354);
+            this.pnlViewRecipe.TabIndex = 7;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lblIIngredients, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblCInstructions, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gvCookingInstructions, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.gvIngredients, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 14);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.68693F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.31307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(752, 329);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
+            // lblIIngredients
+            // 
+            this.lblIIngredients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblIIngredients.AutoSize = true;
+            this.lblIIngredients.Location = new System.Drawing.Point(3, 3);
+            this.lblIIngredients.Name = "lblIIngredients";
+            this.lblIIngredients.Size = new System.Drawing.Size(370, 15);
+            this.lblIIngredients.TabIndex = 0;
+            this.lblIIngredients.Text = "Ingredients ";
+            // 
+            // lblCInstructions
+            // 
+            this.lblCInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCInstructions.AutoSize = true;
+            this.lblCInstructions.Location = new System.Drawing.Point(379, 3);
+            this.lblCInstructions.Name = "lblCInstructions";
+            this.lblCInstructions.Size = new System.Drawing.Size(370, 15);
+            this.lblCInstructions.TabIndex = 1;
+            this.lblCInstructions.Text = "Cooking Instructions";
+            // 
+            // gvCookingInstructions
+            // 
+            this.gvCookingInstructions.BackgroundColor = System.Drawing.Color.White;
+            this.gvCookingInstructions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gvCookingInstructions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvCookingInstructions.Location = new System.Drawing.Point(379, 25);
+            this.gvCookingInstructions.Name = "gvCookingInstructions";
+            this.gvCookingInstructions.RowTemplate.Height = 25;
+            this.gvCookingInstructions.Size = new System.Drawing.Size(370, 301);
+            this.gvCookingInstructions.TabIndex = 3;
+            // 
+            // gvIngredients
+            // 
+            this.gvIngredients.AllowUserToAddRows = false;
+            this.gvIngredients.AllowUserToDeleteRows = false;
+            this.gvIngredients.BackgroundColor = System.Drawing.Color.White;
+            this.gvIngredients.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gvIngredients.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gvIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvIngredients.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.gvIngredients.Location = new System.Drawing.Point(3, 25);
+            this.gvIngredients.Name = "gvIngredients";
+            this.gvIngredients.ReadOnly = true;
+            this.gvIngredients.RowTemplate.Height = 25;
+            this.gvIngredients.Size = new System.Drawing.Size(370, 301);
+            this.gvIngredients.TabIndex = 2;
             // 
             // tableViewRecipeLayout
             // 
@@ -749,6 +836,7 @@ namespace RecipeApplication.UI
             this.cbViewRecipe.Name = "cbViewRecipe";
             this.cbViewRecipe.Size = new System.Drawing.Size(273, 23);
             this.cbViewRecipe.TabIndex = 1;
+            this.cbViewRecipe.SelectedIndexChanged += new System.EventHandler(this.ViewRecipeAsync_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -801,6 +889,12 @@ namespace RecipeApplication.UI
             this.tableCookingInstructionsLayout.ResumeLayout(false);
             this.tableCookingInstructionsLayout.PerformLayout();
             this.tabViewRecipe.ResumeLayout(false);
+            this.pnlViewRecipe.ResumeLayout(false);
+            this.pnlViewRecipe.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCookingInstructions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvIngredients)).EndInit();
             this.tableViewRecipeLayout.ResumeLayout(false);
             this.tableViewRecipeLayout.PerformLayout();
             this.ResumeLayout(false);
@@ -864,6 +958,12 @@ namespace RecipeApplication.UI
         private System.Windows.Forms.Label lblDeleteInstruction;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnDeleteInstruction;
+        private System.Windows.Forms.Panel pnlViewRecipe;
+        private System.Windows.Forms.DataGridView gvCookingInstructions;
+        private System.Windows.Forms.DataGridView gvIngredients;
+        private System.Windows.Forms.Label lblCInstructions;
+        private System.Windows.Forms.Label lblIIngredients;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 

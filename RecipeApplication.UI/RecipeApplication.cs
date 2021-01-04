@@ -85,6 +85,17 @@ namespace RecipeApplication.UI
                 button.Enabled = true;
         }
 
+        /// <summary>
+        /// Hides and shows the view recipes tab
+        /// </summary>
+        private void ShowViewRecipes()
+        {
+            if (cbViewRecipe.DataSource == null)
+                pnlViewRecipe.Visible = false;
+            else
+                pnlViewRecipe.Visible = true;
+        }
+
         #endregion 
 
         #region Events
@@ -108,7 +119,8 @@ namespace RecipeApplication.UI
             
             //Check for adding a cooking instruction to a recipe
             CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
-
+            
+            ShowViewRecipes();
         }
 
 
@@ -143,6 +155,7 @@ namespace RecipeApplication.UI
             CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
             //Check for adding a cooking instruction to a recipe
             CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
+            ShowViewRecipes();
         }
 
 
@@ -165,7 +178,7 @@ namespace RecipeApplication.UI
         }
 
 
-        private async void btnDeleteIngredientAsync_Click(object sender, EventArgs e)
+        private async void BtnDeleteIngredientAsync_Click(object sender, EventArgs e)
         {
             btnDeleteIngredient.Enabled = false;
             cbDeleteIngredient.Enabled = false;
@@ -208,12 +221,14 @@ namespace RecipeApplication.UI
             txtInstructionName.Enabled = true;
             txtCookingInstruction.Enabled = true;
             await PopulateCookingInstructionListAsync();
-            
+            //Check for adding a cooking instruction to a recipe
+            CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
+
 
         }
 
 
-        private async void btnDeleteInstructionAsync_Click(object sender, EventArgs e)
+        private async void BtnDeleteInstructionAsync_Click(object sender, EventArgs e)
         {
 
             cbDeleteInstruction.Enabled = false;
@@ -222,8 +237,6 @@ namespace RecipeApplication.UI
             cbDeleteInstruction.Enabled = true;
             btnDeleteInstruction.Enabled = true;
             await PopulateCookingInstructionListAsync();
-            //Check for adding ingredient to a recipe 
-            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
             //Check for adding a cooking instruction to a recipe
             CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
 
@@ -246,6 +259,56 @@ namespace RecipeApplication.UI
 
 
 
+
+        #endregion
+
+
+        #region View Recipe Tab Events
+
+        private async void ViewRecipeAsync_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowViewRecipes();
+            
+            if (cbViewRecipe.SelectedItem is RecipeDTO selectedRecipe)
+            {
+                //Case for select a recipe
+                if (selectedRecipe.Name == "Select A Recipe")
+                    pnlViewRecipe.Visible = false;
+                else
+                {
+                    var recipe = await UIHelper.RecipeUI.GetRecipeWithIngredientsAndInstructions(selectedRecipe);
+
+                   
+                    //check to see if there are any ingredients to show
+                    if (recipe.Ingredients != null && recipe.Ingredients.Count != 0)
+                    {
+                        gvIngredients.Visible = true;
+                        gvIngredients.DataSource = null;
+                        gvIngredients.DataSource = recipe.Ingredients;
+                        gvIngredients.Columns[0].Visible = false;
+                    }
+                    else
+                        gvIngredients.Visible = false;
+
+                    //check to see if there are any cooking instructions to show
+                    if (recipe.Instructions != null && recipe.Instructions.Count !=0)
+                    {
+                        gvCookingInstructions.Visible = true;
+                        gvCookingInstructions.DataSource = null;
+                        gvCookingInstructions.DataSource = recipe.Instructions;
+                        gvCookingInstructions.Columns[0].Visible = false;
+                    }
+                    else
+                        gvCookingInstructions.Visible = false;
+
+                }
+            }
+
+
+
+
+
+        }
 
         #endregion
 

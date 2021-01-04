@@ -16,7 +16,7 @@ namespace RecipeApplication.UI.UIClasses
     {
         #region Fields
 
-        private RecipeUI recipeUI;
+        private readonly RecipeUI recipeUI;
 
         #endregion 
         #region Constructor
@@ -41,12 +41,10 @@ namespace RecipeApplication.UI.UIClasses
         public async Task AddIngredient(TextBox ingredient)
         {
             var isValid = ValidationObject.ValidateIngredientName(ingredient);
-            var added = false;
-
             if (isValid)
             {
                 var ingredientToAdd = new IngredientDTO() { Name = ingredient.Text };
-                added = await BusinessObject.AddIngredientAsync(ingredientToAdd);
+                var added = await BusinessObject.AddIngredientAsync(ingredientToAdd);
 
 
                 if (added)
@@ -73,7 +71,7 @@ namespace RecipeApplication.UI.UIClasses
             var count = ingredients.Count;
             if (count != 0)
             {
-
+                
                 if (ingredients[0].Name != "Select A Ingredient")
                     ingredients.Insert(0, new IngredientDTO() { IngredientId = 0, Name = "Select A Ingredient" });
 
@@ -86,7 +84,7 @@ namespace RecipeApplication.UI.UIClasses
                 if (buttonIngredient != null)
                     buttonIngredient.Enabled = true;
 
-
+                ingredient.SelectedIndex = 0;
             }
             else
             {
@@ -108,8 +106,8 @@ namespace RecipeApplication.UI.UIClasses
         /// <returns>A list of ingredients</returns>
         public async Task<List<IngredientDTO>> GetAllIngredientsAsync()
         {
-            List<IngredientDTO> allIngredients = new List<IngredientDTO>();
-            allIngredients = await BusinessObject.GetAllIngredientsAsync();
+          
+           var allIngredients = await BusinessObject.GetAllIngredientsAsync();
 
             return allIngredients;
         }

@@ -20,7 +20,7 @@ namespace RecipeApplication.UI.UIClasses
         /// <summary>
         /// Field to the RecipeUI class
         /// </summary>
-        private RecipeUI recipeUI;
+        private readonly RecipeUI recipeUI;
 
         #endregion 
 
@@ -53,9 +53,11 @@ namespace RecipeApplication.UI.UIClasses
 
             if (isNameValid && isInstructionValid)
             {
-                var cookingInstructionToAdd = new CookingInstructionDTO();
-                cookingInstructionToAdd.Name = name.Text;
-                cookingInstructionToAdd.Instruction = instruction.Text;
+                var cookingInstructionToAdd = new CookingInstructionDTO()
+                {
+                    Name = name.Text,
+                    Instruction = instruction.Text
+                };
 
                 added = await Task.Run(() => BusinessObject.AddCookingInstructionAsync(cookingInstructionToAdd));
 
@@ -108,6 +110,7 @@ namespace RecipeApplication.UI.UIClasses
             var count = instructions.Count;
             if (count != 0)
             {
+                
                 if (instructions[0].Name != "Select A Instruction")
                     instructions.Insert(0, new CookingInstructionDTO() { CookingInstructionId=0, Name = "Select A Instruction" });
 
@@ -118,6 +121,8 @@ namespace RecipeApplication.UI.UIClasses
 
                 if(buttonInstruction !=null)
                     buttonInstruction.Enabled = true;
+
+                instruction.SelectedIndex = 0;
             }
             else
             {
@@ -136,8 +141,8 @@ namespace RecipeApplication.UI.UIClasses
         /// <returns>A list of cooking instructions</returns>
         public async Task<List<CookingInstructionDTO>> GetCookingInstructionsAsync()
         {
-            List<CookingInstructionDTO> allInstructions = new List<CookingInstructionDTO>();
-            allInstructions = await BusinessObject.GetAllCookingInstructionsAsync();
+            
+          var allInstructions = await BusinessObject.GetAllCookingInstructionsAsync();
 
             return allInstructions;
         }

@@ -128,9 +128,11 @@ namespace RecipeApplication.BL
         private Entities.CookingInstruction CreateInstructionEntity(CookingInstructionDTO instruction)
         {
 
-            var instructionEntity = new Entities.CookingInstruction();
-             instructionEntity.Name = instruction.Name;
-            instructionEntity.Instruction = instruction.Instruction;
+            var instructionEntity = new Entities.CookingInstruction()
+            {
+                Name = instruction.Name,
+                Instruction = instruction.Instruction
+            };
 
             return instructionEntity;
 
