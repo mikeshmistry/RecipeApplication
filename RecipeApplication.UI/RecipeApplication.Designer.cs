@@ -42,6 +42,11 @@ namespace RecipeApplication.UI
             this.txtAddRecipe = new System.Windows.Forms.TextBox();
             this.tabAddRecipeControl = new System.Windows.Forms.TabControl();
             this.tabAddIngridient = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDeleteIngredient = new System.Windows.Forms.Button();
+            this.tbDeleteIngredient = new System.Windows.Forms.TableLayoutPanel();
+            this.cbDeleteIngredient = new System.Windows.Forms.ComboBox();
+            this.lblDeleteIngredient = new System.Windows.Forms.Label();
             this.tableLayoutRecipe = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddToRecipe = new System.Windows.Forms.Button();
             this.tableAddToRecipeLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -55,6 +60,11 @@ namespace RecipeApplication.UI
             this.lblIngridentName = new System.Windows.Forms.Label();
             this.txtIngridentName = new System.Windows.Forms.TextBox();
             this.tabAddCookingInstruction = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDeleteInstruction = new System.Windows.Forms.Button();
+            this.tblDeleteInstructions = new System.Windows.Forms.TableLayoutPanel();
+            this.cbDeleteInstruction = new System.Windows.Forms.ComboBox();
+            this.lblDeleteInstruction = new System.Windows.Forms.Label();
             this.tableLayoutAddToRecipe = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddCookingInstructionToRecipe = new System.Windows.Forms.Button();
             this.tableLayoutAddCooking = new System.Windows.Forms.TableLayoutPanel();
@@ -81,11 +91,15 @@ namespace RecipeApplication.UI
             this.tableAddRecipeLayout.SuspendLayout();
             this.tabAddRecipeControl.SuspendLayout();
             this.tabAddIngridient.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tbDeleteIngredient.SuspendLayout();
             this.tableLayoutRecipe.SuspendLayout();
             this.tableAddToRecipeLayout.SuspendLayout();
             this.tableAddIngridentButtonLayout.SuspendLayout();
             this.tableIngredientLayout.SuspendLayout();
             this.tabAddCookingInstruction.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tblDeleteInstructions.SuspendLayout();
             this.tableLayoutAddToRecipe.SuspendLayout();
             this.tableLayoutAddCooking.SuspendLayout();
             this.tableButtonAddInstructionLayout.SuspendLayout();
@@ -103,7 +117,7 @@ namespace RecipeApplication.UI
             this.tabAddRecipe.Location = new System.Drawing.Point(4, 24);
             this.tabAddRecipe.Name = "tabAddRecipe";
             this.tabAddRecipe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddRecipe.Size = new System.Drawing.Size(727, 359);
+            this.tabAddRecipe.Size = new System.Drawing.Size(790, 430);
             this.tabAddRecipe.TabIndex = 1;
             this.tabAddRecipe.Text = "Add Recipe";
             this.tabAddRecipe.UseVisualStyleBackColor = true;
@@ -131,7 +145,7 @@ namespace RecipeApplication.UI
             this.btnDeleteRecipe.TabIndex = 2;
             this.btnDeleteRecipe.Text = "Delete Recipe";
             this.btnDeleteRecipe.UseVisualStyleBackColor = true;
-            this.btnDeleteRecipe.Click += new System.EventHandler(this.btnDeleteRecipe_Click);
+            this.btnDeleteRecipe.Click += new System.EventHandler(this.BtnDeleteRecipeAsync_Click);
             // 
             // tableDeleteRecipeLayout
             // 
@@ -193,7 +207,7 @@ namespace RecipeApplication.UI
             this.btnAddRecipe.TabIndex = 2;
             this.btnAddRecipe.Text = "Add Recipe";
             this.btnAddRecipe.UseVisualStyleBackColor = true;
-            this.btnAddRecipe.Click += new System.EventHandler(this.btnAddRecipe_Click);
+            this.btnAddRecipe.Click += new System.EventHandler(this.BtnAddRecipeAsync_Click);
             // 
             // tableAddRecipeLayout
             // 
@@ -239,11 +253,13 @@ namespace RecipeApplication.UI
             this.tabAddRecipeControl.Name = "tabAddRecipeControl";
             this.tabAddRecipeControl.SelectedIndex = 0;
             this.tabAddRecipeControl.ShowToolTips = true;
-            this.tabAddRecipeControl.Size = new System.Drawing.Size(735, 387);
+            this.tabAddRecipeControl.Size = new System.Drawing.Size(798, 458);
             this.tabAddRecipeControl.TabIndex = 0;
             // 
             // tabAddIngridient
             // 
+            this.tabAddIngridient.Controls.Add(this.tableLayoutPanel2);
+            this.tabAddIngridient.Controls.Add(this.tbDeleteIngredient);
             this.tabAddIngridient.Controls.Add(this.tableLayoutRecipe);
             this.tabAddIngridient.Controls.Add(this.tableAddToRecipeLayout);
             this.tabAddIngridient.Controls.Add(this.tableAddIngridentButtonLayout);
@@ -251,10 +267,69 @@ namespace RecipeApplication.UI
             this.tabAddIngridient.Location = new System.Drawing.Point(4, 24);
             this.tabAddIngridient.Name = "tabAddIngridient";
             this.tabAddIngridient.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddIngridient.Size = new System.Drawing.Size(727, 359);
+            this.tabAddIngridient.Size = new System.Drawing.Size(790, 430);
             this.tabAddIngridient.TabIndex = 2;
             this.tabAddIngridient.Text = "Add Ingredient";
             this.tabAddIngridient.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnDeleteIngredient, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(266, 118);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(119, 32);
+            this.tableLayoutPanel2.TabIndex = 9;
+            // 
+            // btnDeleteIngredient
+            // 
+            this.btnDeleteIngredient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteIngredient.Location = new System.Drawing.Point(3, 3);
+            this.btnDeleteIngredient.Name = "btnDeleteIngredient";
+            this.btnDeleteIngredient.Size = new System.Drawing.Size(113, 26);
+            this.btnDeleteIngredient.TabIndex = 2;
+            this.btnDeleteIngredient.Text = "Delete Ingredient";
+            this.btnDeleteIngredient.UseVisualStyleBackColor = true;
+            this.btnDeleteIngredient.Click += new System.EventHandler(this.btnDeleteIngredientAsync_Click);
+            // 
+            // tbDeleteIngredient
+            // 
+            this.tbDeleteIngredient.ColumnCount = 2;
+            this.tbDeleteIngredient.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.87992F));
+            this.tbDeleteIngredient.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.12008F));
+            this.tbDeleteIngredient.Controls.Add(this.cbDeleteIngredient, 0, 0);
+            this.tbDeleteIngredient.Controls.Add(this.lblDeleteIngredient, 0, 0);
+            this.tbDeleteIngredient.Location = new System.Drawing.Point(3, 77);
+            this.tbDeleteIngredient.Name = "tbDeleteIngredient";
+            this.tbDeleteIngredient.RowCount = 1;
+            this.tbDeleteIngredient.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbDeleteIngredient.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbDeleteIngredient.Size = new System.Drawing.Size(483, 35);
+            this.tbDeleteIngredient.TabIndex = 8;
+            // 
+            // cbDeleteIngredient
+            // 
+            this.cbDeleteIngredient.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbDeleteIngredient.FormattingEnabled = true;
+            this.cbDeleteIngredient.Location = new System.Drawing.Point(128, 6);
+            this.cbDeleteIngredient.Name = "cbDeleteIngredient";
+            this.cbDeleteIngredient.Size = new System.Drawing.Size(283, 23);
+            this.cbDeleteIngredient.TabIndex = 9;
+            // 
+            // lblDeleteIngredient
+            // 
+            this.lblDeleteIngredient.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblDeleteIngredient.AutoSize = true;
+            this.lblDeleteIngredient.Location = new System.Drawing.Point(3, 10);
+            this.lblDeleteIngredient.Name = "lblDeleteIngredient";
+            this.lblDeleteIngredient.Size = new System.Drawing.Size(72, 15);
+            this.lblDeleteIngredient.TabIndex = 0;
+            this.lblDeleteIngredient.Text = "Ingredients :";
             // 
             // tableLayoutRecipe
             // 
@@ -262,7 +337,7 @@ namespace RecipeApplication.UI
             this.tableLayoutRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutRecipe.Controls.Add(this.btnAddToRecipe, 0, 0);
-            this.tableLayoutRecipe.Location = new System.Drawing.Point(280, 145);
+            this.tableLayoutRecipe.Location = new System.Drawing.Point(277, 219);
             this.tableLayoutRecipe.Name = "tableLayoutRecipe";
             this.tableLayoutRecipe.RowCount = 1;
             this.tableLayoutRecipe.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -279,7 +354,7 @@ namespace RecipeApplication.UI
             this.btnAddToRecipe.TabIndex = 2;
             this.btnAddToRecipe.Text = "Add To Recipe";
             this.btnAddToRecipe.UseVisualStyleBackColor = true;
-            this.btnAddToRecipe.Click += new System.EventHandler(this.btnAddToRecipe_Click);
+            this.btnAddToRecipe.Click += new System.EventHandler(this.BtnAddToRecipeAsync_Click);
             // 
             // tableAddToRecipeLayout
             // 
@@ -290,7 +365,7 @@ namespace RecipeApplication.UI
             this.tableAddToRecipeLayout.Controls.Add(this.lblAddIngredientToRecipe, 0, 0);
             this.tableAddToRecipeLayout.Controls.Add(this.cbAddToRecipe, 1, 1);
             this.tableAddToRecipeLayout.Controls.Add(this.cbIngredients, 1, 0);
-            this.tableAddToRecipeLayout.Location = new System.Drawing.Point(3, 82);
+            this.tableAddToRecipeLayout.Location = new System.Drawing.Point(6, 156);
             this.tableAddToRecipeLayout.Name = "tableAddToRecipeLayout";
             this.tableAddToRecipeLayout.RowCount = 2;
             this.tableAddToRecipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -360,7 +435,7 @@ namespace RecipeApplication.UI
             this.btnAddIngridient.TabIndex = 2;
             this.btnAddIngridient.Text = "Add Ingredient";
             this.btnAddIngridient.UseVisualStyleBackColor = true;
-            this.btnAddIngridient.Click += new System.EventHandler(this.btnAddIngridient_Click);
+            this.btnAddIngridient.Click += new System.EventHandler(this.BtnAddIngridientAsync_Click);
             // 
             // tableIngredientLayout
             // 
@@ -397,6 +472,8 @@ namespace RecipeApplication.UI
             // 
             // tabAddCookingInstruction
             // 
+            this.tabAddCookingInstruction.Controls.Add(this.tableLayoutPanel3);
+            this.tabAddCookingInstruction.Controls.Add(this.tblDeleteInstructions);
             this.tabAddCookingInstruction.Controls.Add(this.tableLayoutAddToRecipe);
             this.tabAddCookingInstruction.Controls.Add(this.tableLayoutAddCooking);
             this.tabAddCookingInstruction.Controls.Add(this.tableButtonAddInstructionLayout);
@@ -404,10 +481,69 @@ namespace RecipeApplication.UI
             this.tabAddCookingInstruction.Location = new System.Drawing.Point(4, 24);
             this.tabAddCookingInstruction.Name = "tabAddCookingInstruction";
             this.tabAddCookingInstruction.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddCookingInstruction.Size = new System.Drawing.Size(727, 359);
+            this.tabAddCookingInstruction.Size = new System.Drawing.Size(790, 430);
             this.tabAddCookingInstruction.TabIndex = 3;
             this.tabAddCookingInstruction.Text = "Add Cooking Instructions";
             this.tabAddCookingInstruction.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.btnDeleteInstruction, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(275, 246);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(116, 32);
+            this.tableLayoutPanel3.TabIndex = 10;
+            // 
+            // btnDeleteInstruction
+            // 
+            this.btnDeleteInstruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteInstruction.Location = new System.Drawing.Point(3, 4);
+            this.btnDeleteInstruction.Name = "btnDeleteInstruction";
+            this.btnDeleteInstruction.Size = new System.Drawing.Size(110, 23);
+            this.btnDeleteInstruction.TabIndex = 2;
+            this.btnDeleteInstruction.Text = "Delete Instruction";
+            this.btnDeleteInstruction.UseVisualStyleBackColor = true;
+            this.btnDeleteInstruction.Click += new System.EventHandler(this.btnDeleteInstructionAsync_Click);
+            // 
+            // tblDeleteInstructions
+            // 
+            this.tblDeleteInstructions.ColumnCount = 2;
+            this.tblDeleteInstructions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.87992F));
+            this.tblDeleteInstructions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.12008F));
+            this.tblDeleteInstructions.Controls.Add(this.cbDeleteInstruction, 0, 0);
+            this.tblDeleteInstructions.Controls.Add(this.lblDeleteInstruction, 0, 0);
+            this.tblDeleteInstructions.Location = new System.Drawing.Point(6, 196);
+            this.tblDeleteInstructions.Name = "tblDeleteInstructions";
+            this.tblDeleteInstructions.RowCount = 1;
+            this.tblDeleteInstructions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblDeleteInstructions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblDeleteInstructions.Size = new System.Drawing.Size(483, 35);
+            this.tblDeleteInstructions.TabIndex = 9;
+            // 
+            // cbDeleteInstruction
+            // 
+            this.cbDeleteInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbDeleteInstruction.FormattingEnabled = true;
+            this.cbDeleteInstruction.Location = new System.Drawing.Point(128, 6);
+            this.cbDeleteInstruction.Name = "cbDeleteInstruction";
+            this.cbDeleteInstruction.Size = new System.Drawing.Size(308, 23);
+            this.cbDeleteInstruction.TabIndex = 9;
+            // 
+            // lblDeleteInstruction
+            // 
+            this.lblDeleteInstruction.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblDeleteInstruction.AutoSize = true;
+            this.lblDeleteInstruction.Location = new System.Drawing.Point(3, 10);
+            this.lblDeleteInstruction.Name = "lblDeleteInstruction";
+            this.lblDeleteInstruction.Size = new System.Drawing.Size(111, 15);
+            this.lblDeleteInstruction.TabIndex = 0;
+            this.lblDeleteInstruction.Text = "Cooking Instuction:";
             // 
             // tableLayoutAddToRecipe
             // 
@@ -415,7 +551,7 @@ namespace RecipeApplication.UI
             this.tableLayoutAddToRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddToRecipe.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutAddToRecipe.Controls.Add(this.btnAddCookingInstructionToRecipe, 0, 0);
-            this.tableLayoutAddToRecipe.Location = new System.Drawing.Point(283, 271);
+            this.tableLayoutAddToRecipe.Location = new System.Drawing.Point(283, 369);
             this.tableLayoutAddToRecipe.Name = "tableLayoutAddToRecipe";
             this.tableLayoutAddToRecipe.RowCount = 1;
             this.tableLayoutAddToRecipe.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -432,7 +568,7 @@ namespace RecipeApplication.UI
             this.btnAddCookingInstructionToRecipe.TabIndex = 2;
             this.btnAddCookingInstructionToRecipe.Text = "Add To Recipe";
             this.btnAddCookingInstructionToRecipe.UseVisualStyleBackColor = true;
-            this.btnAddCookingInstructionToRecipe.Click += new System.EventHandler(this.btnAddCookingInstructionToRecipe_Click);
+            this.btnAddCookingInstructionToRecipe.Click += new System.EventHandler(this.BtnAddCookingInstructionToRecipeAsync_Click);
             // 
             // tableLayoutAddCooking
             // 
@@ -443,7 +579,7 @@ namespace RecipeApplication.UI
             this.tableLayoutAddCooking.Controls.Add(this.lblRecipeToAddToInstruction, 0, 1);
             this.tableLayoutAddCooking.Controls.Add(this.cbCookingInstructionRecipe, 1, 1);
             this.tableLayoutAddCooking.Controls.Add(this.lblCookingInstruction, 0, 0);
-            this.tableLayoutAddCooking.Location = new System.Drawing.Point(3, 177);
+            this.tableLayoutAddCooking.Location = new System.Drawing.Point(6, 284);
             this.tableLayoutAddCooking.Name = "tableLayoutAddCooking";
             this.tableLayoutAddCooking.RowCount = 2;
             this.tableLayoutAddCooking.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -513,7 +649,7 @@ namespace RecipeApplication.UI
             this.btnAddInstruction.TabIndex = 2;
             this.btnAddInstruction.Text = "Add Instruction";
             this.btnAddInstruction.UseVisualStyleBackColor = true;
-            this.btnAddInstruction.Click += new System.EventHandler(this.btnAddInstruction_Click);
+            this.btnAddInstruction.Click += new System.EventHandler(this.BtnAddInstructionAsync_Click);
             // 
             // tableCookingInstructionsLayout
             // 
@@ -567,7 +703,7 @@ namespace RecipeApplication.UI
             this.txtCookingInstruction.Location = new System.Drawing.Point(140, 44);
             this.txtCookingInstruction.Multiline = true;
             this.txtCookingInstruction.Name = "txtCookingInstruction";
-            this.txtCookingInstruction.Size = new System.Drawing.Size(229, 83);
+            this.txtCookingInstruction.Size = new System.Drawing.Size(283, 83);
             this.txtCookingInstruction.TabIndex = 3;
             // 
             // tabViewRecipe
@@ -576,7 +712,7 @@ namespace RecipeApplication.UI
             this.tabViewRecipe.Location = new System.Drawing.Point(4, 24);
             this.tabViewRecipe.Name = "tabViewRecipe";
             this.tabViewRecipe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabViewRecipe.Size = new System.Drawing.Size(727, 359);
+            this.tabViewRecipe.Size = new System.Drawing.Size(790, 430);
             this.tabViewRecipe.TabIndex = 4;
             this.tabViewRecipe.Text = "View Recipe";
             this.tabViewRecipe.UseVisualStyleBackColor = true;
@@ -613,7 +749,6 @@ namespace RecipeApplication.UI
             this.cbViewRecipe.Name = "cbViewRecipe";
             this.cbViewRecipe.Size = new System.Drawing.Size(273, 23);
             this.cbViewRecipe.TabIndex = 1;
-            this.cbViewRecipe.Text = "Select a Recipe";
             // 
             // label1
             // 
@@ -630,13 +765,13 @@ namespace RecipeApplication.UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.ClientSize = new System.Drawing.Size(833, 482);
             this.Controls.Add(this.tabAddRecipeControl);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RecipeApplication";
             this.Text = "Recipe Application ";
-            this.Load += new System.EventHandler(this.RecipeApplication_Load);
+            this.Load += new System.EventHandler(this.RecipeApplicationAsync_Load);
             this.tabAddRecipe.ResumeLayout(false);
             this.tableDeleteRecipeButtonLayout.ResumeLayout(false);
             this.tableDeleteRecipeLayout.ResumeLayout(false);
@@ -646,6 +781,9 @@ namespace RecipeApplication.UI
             this.tableAddRecipeLayout.PerformLayout();
             this.tabAddRecipeControl.ResumeLayout(false);
             this.tabAddIngridient.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tbDeleteIngredient.ResumeLayout(false);
+            this.tbDeleteIngredient.PerformLayout();
             this.tableLayoutRecipe.ResumeLayout(false);
             this.tableAddToRecipeLayout.ResumeLayout(false);
             this.tableAddToRecipeLayout.PerformLayout();
@@ -653,6 +791,9 @@ namespace RecipeApplication.UI
             this.tableIngredientLayout.ResumeLayout(false);
             this.tableIngredientLayout.PerformLayout();
             this.tabAddCookingInstruction.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tblDeleteInstructions.ResumeLayout(false);
+            this.tblDeleteInstructions.PerformLayout();
             this.tableLayoutAddToRecipe.ResumeLayout(false);
             this.tableLayoutAddCooking.ResumeLayout(false);
             this.tableLayoutAddCooking.PerformLayout();
@@ -713,6 +854,16 @@ namespace RecipeApplication.UI
         private System.Windows.Forms.Label lblCookingInstruction;
         private System.Windows.Forms.TableLayoutPanel tableLayoutAddToRecipe;
         private System.Windows.Forms.Button btnAddCookingInstructionToRecipe;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnDeleteIngredient;
+        private System.Windows.Forms.TableLayoutPanel tbDeleteIngredient;
+        private System.Windows.Forms.Label lblDeleteIngredient;
+        private System.Windows.Forms.ComboBox cbDeleteIngredient;
+        private System.Windows.Forms.TableLayoutPanel tblDeleteInstructions;
+        private System.Windows.Forms.ComboBox cbDeleteInstruction;
+        private System.Windows.Forms.Label lblDeleteInstruction;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button btnDeleteInstruction;
     }
 }
 

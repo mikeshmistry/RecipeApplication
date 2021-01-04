@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeApplication.BL.DataTransformationObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -9,7 +10,7 @@ namespace RecipeApplication.UI.ValidationClasses
     /// <summary>
     /// Class to validate recipes on the UI layer
     /// </summary>
-    class RecipeValidator : ValidationBase
+   public class RecipeValidator : ValidationBase
     {
 
         #region Constructor
@@ -35,16 +36,19 @@ namespace RecipeApplication.UI.ValidationClasses
         {
             var isValid = true;
 
-            if(String.IsNullOrEmpty(control.Text))
+            if(control.Text.Length == 0)
             {
+               
                 errorProvider.SetError(control, "You must enter a recipe name");
-                isValid = false;
+               isValid = false;
            
             }
             else
             {
                 Clear(control);
             }
+                
+           
 
             return isValid;
         }
@@ -59,7 +63,10 @@ namespace RecipeApplication.UI.ValidationClasses
         {
             var isValid = true;
 
-            if (control.SelectedItem == null)
+            var recipe = control.SelectedItem as RecipeDTO;
+
+           
+            if (recipe ==null || recipe != null && recipe.Name == "Select A Recipe")
             {
                 errorProvider.SetError(control, "You must select a recipe");
                 isValid = false;

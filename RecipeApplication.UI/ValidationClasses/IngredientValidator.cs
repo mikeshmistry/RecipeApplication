@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeApplication.BL.DataTransformationObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -10,7 +11,7 @@ namespace RecipeApplication.UI.ValidationClasses
     /// <summary>
     /// Class to Validate Ingredients on the UI layer
     /// </summary>
-    class IngredientValidator : ValidationBase
+   public class IngredientValidator : ValidationBase
     {
 
         #region Constructor
@@ -62,7 +63,9 @@ namespace RecipeApplication.UI.ValidationClasses
         {
             var isValid = true;
 
-            if (control.SelectedItem == null)
+            var ingredient = control.SelectedItem as IngredientDTO;
+
+            if (ingredient == null || ingredient !=null && ingredient.Name == "Select A Ingredient")
             {
                 errorProvider.SetError(control, "You must select an ingredient");
                 isValid = false;

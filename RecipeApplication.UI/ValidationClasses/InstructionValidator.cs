@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeApplication.BL.DataTransformationObjects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace RecipeApplication.UI.ValidationClasses
     /// <summary>
     /// Class to validate cooking instructions On the UI layer
     /// </summary>
-   class InstructionValidator : ValidationBase
+   public class InstructionValidator : ValidationBase
     {
 
         #region Constructors
@@ -81,7 +82,9 @@ namespace RecipeApplication.UI.ValidationClasses
         {
             var isValid = true;
 
-            if (control.SelectedItem == null)
+            var instruction = control.SelectedItem as CookingInstructionDTO;
+
+            if (instruction == null || instruction !=null && instruction.Name == "Select A Instruction")
             {
                 errorProvider.SetError(control, "You must select a cooking instruction");
                 isValid = false;

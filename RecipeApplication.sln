@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApplication.BL", "RecipeApplication.BL\RecipeApplication.BL.csproj", "{AC5DEC85-AADC-4658-BCCC-097F3C6AFD80}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApplication.BL.UnitTests", "RecipeApplication.BL.UnitTests\RecipeApplication.BL.UnitTests.csproj", "{3C819E48-EF9A-4F22-BC7C-1311368FA575}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApplication.UI", "RecipeApplication.UI\RecipeApplication.UI.csproj", "{2939894F-F303-49D3-A845-23D6C40DBE96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApplication.UI", "RecipeApplication.UI\RecipeApplication.UI.csproj", "{2939894F-F303-49D3-A845-23D6C40DBE96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{AC5DEC85-AADC-4658-BCCC-097F3C6AFD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC5DEC85-AADC-4658-BCCC-097F3C6AFD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC5DEC85-AADC-4658-BCCC-097F3C6AFD80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C819E48-EF9A-4F22-BC7C-1311368FA575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C819E48-EF9A-4F22-BC7C-1311368FA575}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C819E48-EF9A-4F22-BC7C-1311368FA575}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C819E48-EF9A-4F22-BC7C-1311368FA575}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2939894F-F303-49D3-A845-23D6C40DBE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2939894F-F303-49D3-A845-23D6C40DBE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2939894F-F303-49D3-A845-23D6C40DBE96}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,110 +1,148 @@
-﻿using RecipeApplication.UI.ValidationClasses;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RecipeApplication.BL;
+using RecipeApplication.BL.DataTransformationObjects;
+using RecipeApplication.UI.UIClasses;
+
 
 namespace RecipeApplication.UI
 {
     public partial class RecipeApplication : Form
     {
-
-        #region Properties 
-
+        #region Field
         /// <summary>
-        /// Property to a RecipeValidator used to validate UI for recipes
+        /// Instance to the UICreator class
         /// </summary>
-        private RecipeValidator RecipeValidator { get; set; }
+        private UICreator UIHelper;
 
-        /// <summary>
-        /// Property to an IngredientValidator used to validate UI for ingredients tab 
-        /// </summary>
-        private IngredientValidator IngredientValidator { get; set; }
+      
 
-        /// <summary>
-        /// Property to an InstructionValidator used to validate UI for cooking instructions tab
-        /// </summary>
-        private InstructionValidator InstructionValidator { get; set; }
-
-        /// <summary>
-        /// Property to the Recipe Business Layer Object
-        /// </summary>
-        private Recipe Recipe { get; set; }
-
-
+      
         #endregion
 
         #region Constructor
 
         public RecipeApplication()
         {
+           
             InitializeComponent();
            
         }
 
         #endregion
 
-        #region Load Events
+        #region Methods
 
-        private void RecipeApplication_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Method to populate all Recipes List used in the application 
+        /// </summary>
+        private async Task PopulateAllRecipeListAsync()
         {
-            RecipeValidator = new RecipeValidator();
-            IngredientValidator = new IngredientValidator();
-            InstructionValidator = new InstructionValidator();
-            Recipe = new Recipe();
-
-            //get all the recipes 
-            var recipeList = Recipe.GetAllRecipes();
-
-            if(recipeList != null)
-            {
-                cbRecipes.DataSource = recipeList;
-                cbRecipes.DisplayMember = "Name";
-
+            var recipeList = await UIHelper.RecipeUI.GetAllRecipesAsync();
+            UIHelper.RecipeUI.PopulateRecipesList(cbRecipes, recipeList,btnDeleteRecipe);
+            UIHelper.RecipeUI.PopulateRecipesList(cbAddToRecipe, recipeList);
+            UIHelper.RecipeUI.PopulateRecipesList(cbCookingInstructionRecipe, recipeList);
+            UIHelper.RecipeUI.PopulateRecipesList(cbViewRecipe, recipeList);
            
-            }
+        }
 
+        /// <summary>
+        /// Method to populate all Ingredient List used in the application
+        /// </summary>
+        private async Task PopulateIngredientListAsync()
+        {
+            var ingredientList = await UIHelper.IngredientUI.GetAllIngredientsAsync();
+            UIHelper.IngredientUI.PopulateIngredientList(cbIngredients, ingredientList);
+            UIHelper.IngredientUI.PopulateIngredientList(cbDeleteIngredient, ingredientList,btnDeleteIngredient);
+            
+        }
+
+        
+        /// <summary>
+        /// Method to populate all Cooking Instructions List used in the application 
+        /// </summary>
+        /// <returns></returns>
+        private async Task PopulateCookingInstructionListAsync()
+        {
+            var instructionsList = await UIHelper.InstructionUI.GetCookingInstructionsAsync();
+            UIHelper.InstructionUI.PopulateInstructionList(cbDeleteInstruction, instructionsList,btnDeleteInstruction);
+            UIHelper.InstructionUI.PopulateInstructionList(cbCookingInstruction, instructionsList);
+        }
+
+
+        /// <summary>
+        /// Method to disable a button if one of the comboBox's data sources are null
+        /// </summary>
+        /// <param name="first">The first comboBox to check</param>
+        /// <param name="second">The second comboBox to check</param>
+        /// <param name="buttonToCheck">The button to enable or disable</param>
+        private void CheckButtonEnabled(ComboBox first, ComboBox second, Button button)
+        {
+            if (first.DataSource == null || second.DataSource == null)
+                button.Enabled = false;
+          
+            else
+                button.Enabled = true;
+        }
+
+        #endregion 
+
+        #region Events
+
+        private async void RecipeApplicationAsync_Load(object sender, EventArgs e)
+        {
+            //create an instance of the UI helper class
+             UIHelper = new UICreator();
+
+            //Populate all recipeList
+            await PopulateAllRecipeListAsync();
+
+            //Populate all ingredientList 
+            await PopulateIngredientListAsync();
+
+            //Populate all cooking instructions List
+            await PopulateCookingInstructionListAsync();
+
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            
+            //Check for adding a cooking instruction to a recipe
+            CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
 
         }
 
-        #endregion
+
 
         #region Add Recipe Tab Events
 
-        private void btnAddRecipe_Click(object sender, EventArgs e)
+        private async void BtnAddRecipeAsync_Click(object sender, EventArgs e)
         {
-
-            var isValid = RecipeValidator.ValidateRecipeName(txtAddRecipe);
-
-            if (isValid)
-            {
-                var recipeToAdd = new Recipe() { Name = txtAddRecipe.Text };
-                var added = Recipe.AddRecipe(recipeToAdd);
-
-                if (added)
-                    MessageBox.Show("Recipe added");
-
-                else
-                    MessageBox.Show("Recipe Not Added");
-
-            }
+            btnAddRecipe.Enabled = false;
+            await UIHelper.RecipeUI.AddRecipeAsync(txtAddRecipe);
+            btnAddRecipe.Enabled = true;
+            await PopulateAllRecipeListAsync();
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            //Check for adding a cooking instruction to a recipe
+            CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
         }
+    
 
 
-        private void btnDeleteRecipe_Click(object sender, EventArgs e)
+        private async void BtnDeleteRecipeAsync_Click(object sender, EventArgs e)
         {
-            var isValid = RecipeValidator.ValidateRecipeSelection(cbRecipes);
 
-            if (isValid)
-            {
-                MessageBox.Show("Deleted successfully");
-            }
+            cbRecipes.Enabled = false;
+            btnDeleteRecipe.Enabled = false;
+            await UIHelper.RecipeUI.DeleteRecipeAsync(cbRecipes);
+            cbRecipes.Enabled = true;
+            btnDeleteRecipe.Enabled = true;
+            await PopulateAllRecipeListAsync();
+
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            //Check for adding a cooking instruction to a recipe
+            CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
         }
 
 
@@ -112,61 +150,105 @@ namespace RecipeApplication.UI
 
         #region Add Ingredient Tab Events
 
-        private void btnAddIngridient_Click(object sender, EventArgs e)
+        private async void BtnAddIngridientAsync_Click(object sender, EventArgs e)
         {
-            var isValid = IngredientValidator.ValidateIngredientName(txtIngridentName);
-
-            if (isValid)
-            {
-                MessageBox.Show("Ingredient Added successfully");
-            }
+            btnAddIngridient.Enabled = false;
+            txtIngridentName.Enabled = false;
+            await UIHelper.IngredientUI.AddIngredient(txtIngridentName);
+            btnAddIngridient.Enabled = true;
+            txtIngridentName.Enabled = true;
+            await PopulateIngredientListAsync();
+            txtIngridentName.Clear();
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            
         }
 
-       
 
-        private void btnAddToRecipe_Click(object sender, EventArgs e)
+        private async void btnDeleteIngredientAsync_Click(object sender, EventArgs e)
         {
-            var isRecipeSelected = RecipeValidator.ValidateRecipeSelection(cbAddToRecipe);
-            var isIngredientSelected = IngredientValidator.ValidateIngredientSelection(cbIngredients);
+            btnDeleteIngredient.Enabled = false;
+            cbDeleteIngredient.Enabled = false;
+            await UIHelper.IngredientUI.DeleteIngredientAsync(cbDeleteIngredient);
+            btnDeleteIngredient.Enabled = true;
+            cbDeleteIngredient.Enabled = true;
+            await PopulateIngredientListAsync();
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            
 
-            if(isRecipeSelected && isIngredientSelected)
-            {
-                MessageBox.Show("Ingredient Added to Recipe Successfully");
-            }
+        }
+
+
+
+        private async void BtnAddToRecipeAsync_Click(object sender, EventArgs e)
+        {
+            cbIngredients.Enabled = false;
+            cbAddToRecipe.Enabled = false;
+            btnAddToRecipe.Enabled = false;
+            await UIHelper.IngredientUI.AddIngredientToRecipeAsync(cbAddToRecipe, cbIngredients);
+            cbIngredients.Enabled = true;
+            cbAddToRecipe.Enabled = true;
+            btnAddToRecipe.Enabled = true;
+
         }
 
         #endregion
 
         #region Add Cooking Instructions Tab Events
 
-        
 
-        private void btnAddInstruction_Click(object sender, EventArgs e)
+        private async void BtnAddInstructionAsync_Click(object sender, EventArgs e)
         {
-           var isVaildName =  InstructionValidator.ValidateInstructionName(txtInstructionName);
-           var isInstructionValid = InstructionValidator.ValidateInstruction(txtCookingInstruction);
+            btnAddInstruction.Enabled = false;
+            txtInstructionName.Enabled = false;
+            txtCookingInstruction.Enabled = false;
+            await UIHelper.InstructionUI.AddCookingInstructionAsync(txtInstructionName, txtCookingInstruction);
+            btnAddInstruction.Enabled = true;
+            txtInstructionName.Enabled = true;
+            txtCookingInstruction.Enabled = true;
+            await PopulateCookingInstructionListAsync();
+            
 
-            if(isVaildName && isInstructionValid)
-            {
-                MessageBox.Show("Added instruction successfully");
-            }
+        }
+
+
+        private async void btnDeleteInstructionAsync_Click(object sender, EventArgs e)
+        {
+
+            cbDeleteInstruction.Enabled = false;
+            btnDeleteInstruction.Enabled = false;
+            await UIHelper.InstructionUI.DeleteCookingInstructionAsync(cbDeleteInstruction);
+            cbDeleteInstruction.Enabled = true;
+            btnDeleteInstruction.Enabled = true;
+            await PopulateCookingInstructionListAsync();
+            //Check for adding ingredient to a recipe 
+            CheckButtonEnabled(cbIngredients, cbAddToRecipe, btnAddToRecipe);
+            //Check for adding a cooking instruction to a recipe
+            CheckButtonEnabled(cbCookingInstruction, cbCookingInstructionRecipe, btnAddCookingInstructionToRecipe);
+
+        }
+
+        private async void BtnAddCookingInstructionToRecipeAsync_Click(object sender, EventArgs e)
+        {
+            cbCookingInstruction.Enabled = false;
+            cbCookingInstructionRecipe.Enabled = false;
+            btnAddCookingInstructionToRecipe.Enabled = false;
+            await UIHelper.InstructionUI.AddCookingInstructionToRecipe(cbCookingInstructionRecipe, cbCookingInstruction);
+            cbCookingInstruction.Enabled = true;
+            cbCookingInstructionRecipe.Enabled = true;
+            btnAddCookingInstructionToRecipe.Enabled = true;
 
 
         }
 
-        private void btnAddCookingInstructionToRecipe_Click(object sender, EventArgs e)
-        {
-            var isInstructionSelected = InstructionValidator.ValidateInstructionSelection(cbCookingInstruction);
-            var isRecipeSelected = RecipeValidator.ValidateRecipeSelection(cbCookingInstructionRecipe);
 
-            if(isInstructionSelected && isRecipeSelected)
-            {
-                MessageBox.Show("Added cooking instruction to recipe");
-            }
-        }
+
+
+
 
         #endregion
 
-        
+        #endregion
     }
 }

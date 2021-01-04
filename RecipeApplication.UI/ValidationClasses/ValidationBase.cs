@@ -9,7 +9,7 @@ namespace RecipeApplication.UI.ValidationClasses
     /// <summary>
     /// Base validation class used to validate UI components 
     /// </summary>
-  internal abstract class ValidationBase
+  public abstract class ValidationBase
     {
         #region fields
 
@@ -44,9 +44,9 @@ namespace RecipeApplication.UI.ValidationClasses
         /// <param name="control">The control to clear the message for</param>
         protected void Clear(Control control)
         {
+
             errorProvider.SetError(control, String.Empty);
         }
-
 
         #endregion
     }
