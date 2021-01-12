@@ -35,6 +35,8 @@ namespace RecipeApplication.BL
         public Recipe() : base()
         {
             recipeRepository = new RecipeRepository(RecipeContext);
+           
+           
 
 
         }

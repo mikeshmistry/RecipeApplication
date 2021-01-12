@@ -1,7 +1,6 @@
 ﻿using Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using RecipeApplication.BL.DataTransformationObjects;
@@ -30,6 +29,7 @@ namespace RecipeApplication.BL
         public CookingInstruction(): base()
         {
             cookingInstructionRepository = new CookingInstructionRepository(RecipeContext);
+           
         }
 
         #endregion

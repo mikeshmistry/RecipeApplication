@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DatabaseContext;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeApplication.BL
 {
@@ -27,7 +27,14 @@ namespace RecipeApplication.BL
         /// </summary>
         public BusinessBase()
         {
-            RecipeContext = new RecipeContext();
+            var options = new DbContextOptionsBuilder<RecipeContext>()
+                      .UseSqlServer("Server=localhost\\SQLEXPRESS; Database=Recipes; Trusted_Connection=True;")
+                      .Options;
+
+            RecipeContext = new RecipeContext(options);
+            
+         
+            
         }
 
         #endregion
